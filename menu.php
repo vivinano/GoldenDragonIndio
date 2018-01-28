@@ -1,4 +1,3 @@
-
 <?php
 include 'mysql_connect.php';
 include 'functions.php';
@@ -133,7 +132,8 @@ if(isset($_GET['id'])){
 		    LunchOnly,
 		    Spicy,
 		    Amount,
-		    Price
+		    Price,
+		    imgpathmenu
 		    from Menu where OrderId like ".$wherevar."";
     $limitedQue = MYSQLI_QUERY($db,$limitedSQL);
   
@@ -141,22 +141,13 @@ if(isset($_GET['id'])){
     while($l = MYSQLI_FETCH_ARRAY($limitedQue,MYSQLI_ASSOC)){
 	
 	
-          $imagefile = './goldimage/'.$l['OrderId'].'.jpg';
-	echo $imagefile;
-	 //$imagefile = './goldimage/411.png';
-	If(file_exists($imagefile) == true){
-	    $imagepath2 = $imagefile;
-	}
-	
-	else{
-	    $imagepath2 = './goldimage/411.png';
-	}
+         
       
 	echo "<div class='col-md-6'>
 	       <table style='width:100%;margin-bottom:5px'>
 	       <tr>
 	       <th rowspan='3'>
-	       <img src='".$imagepath2."' class='img-thumbnail' 
+	       <img src='".$l['imgpathmenu']."' class='img-thumbnail' 
 	       style='display:block;width:100px;height:100px'/>
 	       </th>
 	       <th style='color:white;width:73%'>".$l['Ordername']."</th>
